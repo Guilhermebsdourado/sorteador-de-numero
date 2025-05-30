@@ -3,13 +3,24 @@ function sortear (){
     let de = parseInt(document.getElementById('de').value);
     let ate = parseInt(document.getElementById('ate').value);
 
+    if (quantidade > (ate - de + 1)) {
+            alert('Campo "Quantidade" deve ser menor ou igual ao intervalo informado no campo "Do número" até o campo "Até o número". Verifique!');
+            return;
+        }
+
+if (de >= ate) {
+        alert ('O campo do "Do número" tem que ser inferior ao campo"Até o número"verifique!');
+        return;
+    }
+
     let sorteados = [];
     let numero;
     for (let i = 0; i < quantidade; i++) {
         numero = obterNumeroAleatorio(de, ate);
 
     while(sorteados.includes(numero)) {
-        numero = obterNumeroAleatorio(de, ate);
+        numero = obterNumeroAleatorio(de, ate);     
+            
     }
         sorteados.push (numero);
     }
@@ -18,7 +29,7 @@ function sortear (){
     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`;
     alterarStatusBotao();
 }
-
+    
 function obterNumeroAleatorio (min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
